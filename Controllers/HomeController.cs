@@ -1,4 +1,5 @@
-﻿using GIT_MVC.Models;
+﻿using CB.Team;
+using GIT_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -13,8 +14,12 @@ namespace GIT_MVC.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var service = new ServiceClient();
+
+            var user = await service.GetUserAsync(int.MaxValue);
+
             return View();
         }
 
